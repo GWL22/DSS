@@ -1,8 +1,4 @@
 
-# coding: utf-8
-
-# In[1]:
-
 # -*- coding : utf-8 -*-
 
 import numpy as np
