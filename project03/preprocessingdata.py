@@ -75,13 +75,25 @@ class preprocess_dataset(object):
         self.fill_columns('nights', 1)
         self.fill_columns('prepare', 0)
         print 'fill columns'
-        train = self.dataset.reset_index(np.random.permutation(self.dataset.index)).head(10000)
-        train = train.set_index('index')
-        del train['srch_co']
-        del train['srch_ci']
-        del train['date_time']
-        del train['site_name']
-
+        self.dataset = self.dataset.drop(['date_time',
+                                          'site_name',
+                                          'srch_ci',
+                                          'srch_co'], axis=1) \
+                                   .dropna()
         print 'complete'
-        print train.head()
-        return train
+        print self.dataset.head()
+        return self.dataset
+
+# test_line
+
+# import dask.dataframe as dd
+#
+# num = 0
+#
+# whole_train = dd.read_csv('dataset/train.csv',
+#                           parse_dates=['date_time',
+#                                        'srch_ci',
+#                                        'srch_co'])
+# train_temp = whole_train.get_partition(num)
+# pre_train = train_temp.head(len(train_temp))
+# all_train = preprocess_dataset(pre_train).make_sample()
