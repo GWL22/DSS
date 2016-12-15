@@ -7,18 +7,21 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.cross_validation import train_test_split
 from sklearn.metrics import accuracy_score
 
-# random_number : num
+# Num is random choosed number in 0~121
 num = 0
-
+# Load whole train file, and makes partition by using Dask module
+# Dask split it into 122 partitions
 whole_train = dd.read_csv('dataset/train.csv',
                           parse_dates=['date_time', 'srch_ci', 'srch_co'])
-
-
+# Load one of partitions
 train_temp = whole_train.get_partition(num)
+# To make pandas, use .head()
 pre_train = train_temp.head(len(train_temp))
-
+# To preprocess, run make_sample() in preprocessingdata.py
 train = preprocess_dataset(pre_train).make_sample()
-
+# 5 columns need to analyze;
+# user_location_country, hotel_country, srch_destination_id, nights, prepare
+# delete columns excepte them
 x = train.drop(['user_id',
                 'orig_destination_distance',
                 'user_location_city',
@@ -38,10 +41,12 @@ x = train.drop(['user_id',
                 'is_package'], axis=1)
 y = train['is_package']
 
+# split train, test set
 x_train, x_test, y_train, y_test = train_test_split(x, y,
                                                     test_size=0.33,
                                                     random_state=0)
 
+# Using DecisionTreeClassifier, prediction will be progressed
 model = DecisionTreeClassifier(max_depth=100).fit(x_train, y_train)
 print '='*10
 print 'Accuracy : {}'.format(accuracy_score(y_test, model.predict(x_test)))

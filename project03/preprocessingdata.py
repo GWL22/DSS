@@ -18,8 +18,10 @@ class preprocess_dataset(object):
         u_id = self.dataset['user_id']
         labeling = self.dataset[label]
         for item in nat_list:
+            # Make flags not to loop all range
             flag_m = 0
             flag_p = 0
+            # Commonly NaT can be filled by history of user searching
             for alpha in range(1, 100):
                 if flag_m == 0:
                     if (item-alpha) not in nat_list:
@@ -41,7 +43,7 @@ class preprocess_dataset(object):
             elif u_id.ix[item] == u_id.ix[item2]:
                 labeling.ix[item] = labeling.ix[item2]
 
-    # make new columns; nights, margin
+    # make new columns and change term to 'DAY'
     def make_columns(self, label, resource1, resource2):
         self.dataset[label] = self.dataset[resource1] - self.dataset[resource2]
         self.dataset[label] = self.dataset[label] / np.timedelta64(1, 'D')
@@ -61,8 +63,10 @@ class preprocess_dataset(object):
                 else:
                     labeling.ix[num] = mean
 
+        # To use columns easily, change type timedelta to int
         labeling = labeling.astype(int)
 
+    # make sample using above them
     def make_sample(self):
         nat_list = self.find_nat('srch_ci')
         nat_list2 = self.find_nat('srch_co')
@@ -83,17 +87,3 @@ class preprocess_dataset(object):
         print 'complete'
         print self.dataset.head()
         return self.dataset
-
-# test_line
-
-# import dask.dataframe as dd
-#
-# num = 0
-#
-# whole_train = dd.read_csv('dataset/train.csv',
-#                           parse_dates=['date_time',
-#                                        'srch_ci',
-#                                        'srch_co'])
-# train_temp = whole_train.get_partition(num)
-# pre_train = train_temp.head(len(train_temp))
-# all_train = preprocess_dataset(pre_train).make_sample()
