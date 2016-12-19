@@ -11,7 +11,7 @@ The data we used to analyze was crawled on there.
 
 There are many features to predict players' salary, in addition some features' correlation are too high to use general linear regression
 
-Because of that, PCA regression analsis was choosed to decrease features
+Because of that, PCA regression analsis was choosed to make possible to use linear regression although some of them have high correlation.
 
 **Baseball_Salary_Prediction.ipynb** has more detail about salary prediction method.
 
