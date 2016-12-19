@@ -3,11 +3,11 @@
 **Project01 : Baseball Salary Prediction**
 
 My team was tried to predict Baseball Players' salary using players' perpormance for season.
----
+
 **Project02 : News Crawler**
 
 This code is for crawling news in [navernews](www.naver.com)
----
+
 **Project03 : Hotel Recommandation**
 
 I treid to help improving Expedia's hotel recommandation.
