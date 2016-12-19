@@ -28,7 +28,7 @@ The code file is '**DTC_find_package.py**'
 
 The train file, however, is too big to upload github.
 I leave a link where you can download the train file.
-There are four files on the web site and only one of them used;
+There are four files on the web site and only one of them used.
 
 - train.csv
 
