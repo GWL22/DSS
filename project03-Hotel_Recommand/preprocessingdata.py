@@ -71,7 +71,7 @@ class preprocess_dataset(object):
         nat_list = self.find_nat('srch_ci')
         nat_list2 = self.find_nat('srch_co')
         self.make_columns('nights', 'srch_co', 'srch_ci')
-        self.make_columns('prepare', 'srch_ci', 'date_time')
+        self.make_columns('margin', 'srch_ci', 'date_time')
         print 'make columns'
         self.fill_the_date(nat_list, 'srch_co')
         self.fill_the_date(nat_list2, 'srch_ci')
