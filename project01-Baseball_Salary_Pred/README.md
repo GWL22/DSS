@@ -13,6 +13,8 @@ There are many features to predict players' salary, in addition some features' c
 
 Because of that, PCA regression analsis was choosed to make possible to use linear regression although some of them have high correlation.
 
+By using PCA, the salary can be predicted at 70%, and this may make true that **player performance is one of part to determine annual salary of next year**
+
 **Baseball_Salary_Prediction.ipynb** has more detail about salary prediction method.
 
 This file is written in Korean.
