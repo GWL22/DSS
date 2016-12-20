@@ -15,4 +15,6 @@ Because of that, PCA regression analsis was choosed to make possible to use line
 
 **Baseball_Salary_Prediction.ipynb** has more detail about salary prediction method.
 
+This file is written in Korean.
+
 I am so appreciate if you try to read that file.
