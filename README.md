@@ -6,7 +6,7 @@
 
 **Project02 : News Crawler**
 
-- This code is for crawling news in [navernews](www.naver.com)
+- This code is for crawling news in [navernews](http://news.naver.com/)
 
 **Project03 : Hotel Recommandation**
 
