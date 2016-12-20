@@ -24,6 +24,7 @@ However, train dataset has some specific regularities between them;
 - prepare: How much time they are prepared beforehand
 
 Finally, the target was changed 'hotel cluster' to 'is_package'.
+
 'is_package' can be predicted by DecisionTreeClassifier at 90%.
 
 The code file is '**DTC_find_package.py**'
