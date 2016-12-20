@@ -12,8 +12,9 @@ It was made to improve recommendation algorithm of Expedia hotel recommendation 
 Expedia wanted to predict which hotel cluster user would belong to.
 
 '**Ensemble_hotel_cluster.py**' is the result to solve the problem.
-
 It was very difficult to find proper model and columns combinations.
+In addition, Prediction Accuracy (0.30) is too low to judge it works.
+
 However, train dataset has some specific regularities between them;
 
 - user_location_country: The ID of the country the customer is located
@@ -23,6 +24,7 @@ However, train dataset has some specific regularities between them;
 - prepare: How much time they are prepared beforehand
 
 Finally, the target was changed 'hotel cluster' to 'is_package'.
+'is_package' can be predicted by DecisionTreeClassifier at 90%.
 
 The code file is '**DTC_find_package.py**'
 
