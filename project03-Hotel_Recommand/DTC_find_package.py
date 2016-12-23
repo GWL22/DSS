@@ -9,8 +9,8 @@ from sklearn.metrics import accuracy_score
 
 # Num is random choosed number in 0~121
 num = 0
-# Load whole train file, and makes partition by using Dask module
-# Dask split it into 122 partitions
+
+# train.csv is too big to hold all, Dask splits it into 122 partitions
 whole_train = dd.read_csv('dataset/train.csv',
                           parse_dates=['date_time', 'srch_ci', 'srch_co'])
 # Load one of partitions
@@ -46,7 +46,9 @@ x_train, x_test, y_train, y_test = train_test_split(x, y,
                                                     test_size=0.33,
                                                     random_state=0)
 
-# Using DecisionTreeClassifier, prediction will be progressed
+# Too much depth, Too much computation workload.
+# To prevent above situation, depth should be optimized.
+# In this case, accuracy_score is the best when max_depth is 100.
 model = DecisionTreeClassifier(max_depth=100).fit(x_train, y_train)
 print '='*10
 print 'Accuracy : {}'.format(accuracy_score(y_test, model.predict(x_test)))

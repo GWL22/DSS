@@ -8,12 +8,12 @@ class preprocess_dataset(object):
     def __init__(self, dataset):
         self.dataset = dataset
 
-    # make list of NaT
+    # Find NaT in the dataset, and make list of NaT
     def find_nat(self, label):
         labeling = self.dataset[label]
         return self.dataset[labeling.isnull()].index
 
-    # fill NaT in columns; 'srch_co', 'srch_ci'
+    # Fill NaT in columns; 'srch_co', 'srch_ci'
     def fill_the_date(self, nat_list, label):
         u_id = self.dataset['user_id']
         labeling = self.dataset[label]
@@ -21,7 +21,7 @@ class preprocess_dataset(object):
             # Make flags not to loop all range
             flag_m = 0
             flag_p = 0
-            # Commonly NaT can be filled by history of user searching
+            # Commonly NaT can be filled by searching of user log
             for alpha in range(1, 100):
                 if flag_m == 0:
                     if (item-alpha) not in nat_list:
@@ -43,12 +43,12 @@ class preprocess_dataset(object):
             elif u_id.ix[item] == u_id.ix[item2]:
                 labeling.ix[item] = labeling.ix[item2]
 
-    # make new columns and change term to 'DAY'
+    # Make new columns and change datetime term to 'DAY'
     def make_columns(self, label, resource1, resource2):
         self.dataset[label] = self.dataset[resource1] - self.dataset[resource2]
         self.dataset[label] = self.dataset[label] / np.timedelta64(1, 'D')
 
-    # fill new columns if they have NaN
+    # Fill new columns and fill average value of each column if there is NaN
     def fill_columns(self, label, mean):
         labeling = self.dataset[label]
         u_id = self.dataset['user_id']
@@ -66,7 +66,7 @@ class preprocess_dataset(object):
         # To use columns easily, change type timedelta to int
         labeling = labeling.astype(int)
 
-    # make sample using above them
+    # Preprocessing dataset using above them
     def make_sample(self):
         nat_list = self.find_nat('srch_ci')
         nat_list2 = self.find_nat('srch_co')
