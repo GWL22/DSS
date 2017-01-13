@@ -14,9 +14,9 @@ my_port = '# add your password'
 my_schema = '# add your schema name'
 connection_string = 'mysql+mysqldb://{}:{}{}:{}/{}'.format(my_id,
                                                            my_pw,
+                                                           server,
                                                            my_port,
-                                                           my_schema,
-                                                           server
+                                                           my_schema
                                                            )
 
 engine = create_engine(connection_string, pool_recycle=3600, encoding='utf-8')
