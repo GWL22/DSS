@@ -4,13 +4,14 @@ import redis
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-server = 'ec2-54-191-110-146.us-west-2.compute.amazonaws.com'
-r = redis.Redis(host=server, port=6379)
+server = '# add your server address'
+redis_port = '# add your port for redis'
+r = redis.Redis(host=server, port=redis_port)
 
-my_id = 'root'
-my_pw = 'windows48'
-my_port = '3306'
-my_schema = 'navernews'
+my_id = '# add your mysql id'
+my_pw = '# add your mysql pw'
+my_port = '# add your password'
+my_schema = '# add your schema name'
 connection_string = 'mysql+mysqldb://{}:{}{}:{}/{}'.format(my_id,
                                                            my_pw,
                                                            my_port,
